@@ -1,7 +1,4 @@
 //https://leetcode.com/problems/find-common-characters/description/
-#include<iostream>
-#include<vector>
-using namespace std;
 #define min(a,b) ((a)<(b)?(a):(b))
 class Solution {
 public:
