@@ -1,4 +1,7 @@
 //https://leetcode.com/problems/3sum-closest/description/
+/*
+* 类似15题三数之和，但是更简单，不需要求等于target的所有3数，只要找到和target差最小的3数之和
+*/
 class Solution {
 public:
     int threeSumClosest(vector<int>& nums, int target) 
