@@ -1,12 +1,101 @@
 //https://leetcode.com/problems/reverse-words-in-a-string/description/
 //https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0151.%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%87%8C%E7%9A%84%E5%8D%95%E8%AF%8D.md
+class Solution {
+public:
+    //这个trim实际没用到
+    void trim(string &s)
+    {
+        //trim right
+        int spaceCnt = 0;
+        for (int i = s.size()-1; i >=0 ; i--)
+        {
+            if (s[i]==' ')
+            {
+                spaceCnt++;
+            }
+            else 
+                break;
+        }
+        s.resize(s.size()-spaceCnt);
+
+        //trim left
+        spaceCnt = 0;
+        for (int i = 0; i < s.size(); i++)
+        {
+            if (s[i]==' ')
+            {
+                spaceCnt++;
+            }
+            else 
+                break;
+        }
+        int left = 0, right = spaceCnt;
+        while (right < s.size())
+        {
+            s[left++] = s[right++];
+        }
+        s.resize(left);
+    }
+
+    string reverseWords(string s) 
+    {
+        //trim spaces同时trim前后中间的空格，参考力扣027移除元素
+        int slow = 0, fast = 0;
+        for(; fast< s.size() && s[fast]==' '; fast++);
+        for(; fast< s.size(); fast++)
+        {
+            if (fast>0 && s[fast-1]==' ' && s[fast]==' ')
+            {
+                continue;
+            }
+            else
+            {
+                s[slow++] = s[fast];
+            }
+        }
+        s.resize(s[slow-1] == ' '?slow-1: slow);
+        //cout<<"\""<<s<<"\""<<endl;
+
+        //reverse all characters
+        for (int i = 0; i < s.size()/2; i++)
+        {
+            char tmp = s[i];
+            s[i] = s[s.size()-1-i];
+            s[s.size()-1-i] = tmp;
+        }
+        //cout<<"\""<<s<<"\""<<endl;
+
+        //reverse words again
+        int j = 0;
+        for (int i = 0; i < s.size(); i++)
+        {
+            if (i>0 && s[i-1] == ' ')
+                j = i;
+            if (i==s.size()-1 || s[i+1]==' ')
+            {
+                //cout<< "此时j和i的值：" << j<<" "<< i <<endl;
+                int left = j, right = i;
+                while (left<right)
+                {
+                    char tmp = s[left];
+                    s[left] = s[right];
+                    s[right] = tmp;
+                    left++;
+                    right--;
+                }
+            }
+        }
+        return s;
+    }
+};
+
 /*
 * 关键点：
 * 1. erase和find_if函数搭配，对string进行trim（注意ltrim和rtrim区别，包括.base使用）
 * 2. 去除空格中迭代器的逆向使用
 * 3. 时间复杂度是多少？去除多余空格的循环最坏情况下为 O(n^2)，reverse操作为O(n)  记住erase操作为O(n)！！！
 * 4. 如何不用辅助空间并且时间复杂度O(n)解决？
-*/
+
 class Solution {
 public:
     void ltrim(string &s)
@@ -64,3 +153,4 @@ public:
         return res;
     }
 };
+*/
