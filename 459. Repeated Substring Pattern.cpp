@@ -1,4 +1,22 @@
 //https://leetcode.com/problems/repeated-substring-pattern/
+//高级做法是拼接s+s，然后在其中找s（注意去除s+s中首尾字符，否则会找到前面或后面的原始s）
+//以abab为例，拼接后ab abab ab，中间包括abab。
+class Solution {
+public:
+    bool repeatedSubstringPattern(string s) 
+    {
+        string OriginalS= s;
+        s+=s;
+        s.erase(s.begin());
+        s.erase(s.end()-1);
+
+        return s.contains(OriginalS);
+    }
+};
+
+
+/*
+//简单做法是暴力遍历
 class Solution {
 public:
     bool repeatedSubstringPattern(string s) 
@@ -25,3 +43,4 @@ public:
         return false;
     }
 };
+*/
