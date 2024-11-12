@@ -5,16 +5,35 @@
 using namespace std;
 int main()
 {
-    string s, news;
-    cin >> s;
-    for (int i = 0; i < s.size(); i++)
+    string s;
+    cin>> s;
+    
+    int len =s.size(), numD = 0;
+    for (auto ch: s)
     {
-        if(s[i]>='a'&&s[i]<='z')
-            news+=s[i];
-        else
-            news+="number";
+        if(isdigit(ch))
+            numD++;
     }
-    cout<< news;
+    int origEnd = len-1, newEnd = origEnd+numD*5;
+    s.resize(newEnd+1);
+    while(origEnd>=0 && newEnd>=0)
+    {
+        if(!isdigit(s[origEnd]))
+        {
+            s[newEnd--] = s[origEnd--];
+        }
+        else
+        {
+            s[newEnd--] = 'r';
+            s[newEnd--] = 'e';
+            s[newEnd--] = 'b';
+            s[newEnd--] = 'm';
+            s[newEnd--] = 'u';
+            s[newEnd--] = 'n';
+            origEnd--;
+        }
+    }
+    cout<< s<<endl;
     return 0;
 }
 
