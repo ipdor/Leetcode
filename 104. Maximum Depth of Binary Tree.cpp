@@ -1,4 +1,5 @@
 //104. Maximum Depth of Binary Tree
+//这题求最大深度，严格来说深度要用前序遍历从上往下求深度，同时保存最大深度；但是最大深度等价于根节点高度，所以也可以用后序从下往上求高度。
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
