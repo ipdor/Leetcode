@@ -15,8 +15,6 @@ public:
     //左闭右开
     TreeNode* buildTree(vector<int>& nums, int beg, int end)
     {
-        if(end<=beg)
-            return nullptr;
         int indMax=-1, max=-10e6;
         for(int i =beg;i<end; i++)
         {
