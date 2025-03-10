@@ -10,7 +10,8 @@ public:
             ans.push_back(bucket);
             return;
         }
-        for(int i = start; i<=n; i++)
+        //优化剪枝。还需选k-size个必须<=剩余可选n-i+1个
+        for(int i = start; i<=n-k+bucket.size()+1; i++)
         {
             bucket.push_back(i);
             backtracing(i+1, n, bucket);
