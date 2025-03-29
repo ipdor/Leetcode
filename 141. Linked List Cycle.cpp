@@ -7,6 +7,8 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+//2024.10.27创建文件并AC（非第一次），看了题解
+//2025.3.29再次AC
 class Solution {
 public:
     bool hasCycle(ListNode *head) 
