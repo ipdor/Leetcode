@@ -2,7 +2,9 @@
 //https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0110.%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91.md
 //高度是从叶子节点下往上计算，深度相反
 //求深度可以从上到下去查 所以需要前序遍历（中左右）;而高度只能从下到上去查，所以只能后序遍历（左右中）
-//A height-balanced binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one.
+//一个高度平衡二叉树是指对二叉树中的每个节点来说，其两个子树的深度之差从不超过1。
+//2024.11.23创建文件并第一次AC，看了题解
+//2025.3.30第二次AC
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -117,4 +119,28 @@ public:
         return  isBalanced(root->left)&& isBalanced(root->right);
     }
 };
+
+//1.需要子树深度 2.需要返回是否是高度平衡二叉树.但是返回值只能有一个，要么定义不平衡时返回值为负，要么用参数传递
+class Solution {
+public:
+    //balanced:1, inbalance:0
+    bool getH(TreeNode* root, int & h)
+    {
+        if (!root) //如果不需要定义叶子节点高度为0，那么这里不要添加条件，否则lh和rh也要判断是否需要+1
+        {
+            h = 0;
+            return 1;
+        }
+        int lh=0, rh = 0;
+        bool ans  = getH(root->left, lh) && getH(root->right, rh);
+        h= max(lh, rh)+1;
+        return ans&&abs(lh-rh)<=1;
+    }
+    bool isBalanced(TreeNode* root) 
+    {
+        int height = 0;
+        return getH(root, height);
+    }
+};
 */
+
