@@ -10,6 +10,7 @@ public:
         //dp[i]代表装满容量为i的背包有几种方式
         vector<unsigned int>  dp(target+1, 0);
         dp[0] = 1;
+        //先遍历背包再遍历物品。因为计算dp[i]依赖dp[i-x]。
         for (int i = 1; i < dp.size(); i++)
         {
             for (int j = 0; j < nums.size(); j++)
