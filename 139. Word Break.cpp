@@ -1,4 +1,5 @@
 //https://leetcode.com/problems/word-break/description/
+//https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0139.%E5%8D%95%E8%AF%8D%E6%8B%86%E5%88%86.md
 //dp[i]表示从0到i的字符串能被成功分隔
 //j<i，如果dp[j]=1&&字符串ji能在wordDict找到，那么dp[i]=1
 //对于s = "leetcode", wordDict = ["leet","code"]
