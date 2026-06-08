@@ -1,6 +1,6 @@
-//https://kamacoder.com/problempage.php?pid=1066
-//把n个物品j当成 n个物品i,i+1,i+2...i+n, 然后当成01背包解决
-//卡码网需要实名认证/手机号验证，所以没有运行代码
+// https://kamacoder.com/problempage.php?pid=1066
+// 把n个物品j当成 n个物品i,i+1,i+2...i+n, 然后当成01背包解决
+// 2026.06.08 第一次AC
 
 #include <iostream>
 #include <vector>

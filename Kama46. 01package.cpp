@@ -1,6 +1,8 @@
 //https://kamacoder.com/problempage.php?pid=1046
 //https://github.com/youngyangyang04/leetcode-master/blob/master/problems/%E8%83%8C%E5%8C%85%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%8001%E8%83%8C%E5%8C%85-1.md
 //https://github.com/youngyangyang04/leetcode-master/blob/master/problems/%E8%83%8C%E5%8C%85%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%8001%E8%83%8C%E5%8C%85-2.md
+//2025.3.28 创建文件并第一次AC，看了题解，用进阶做法完成
+//2026.6.8  第二次AC，基础做法看了题解，进阶做法没有
 #include <iostream>
 #include <vector>
 using namespace std;
