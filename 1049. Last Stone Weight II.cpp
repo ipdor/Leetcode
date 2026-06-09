@@ -2,6 +2,26 @@
 //https://github.com/youngyangyang04/leetcode-master/blob/master/problems/1049.%E6%9C%80%E5%90%8E%E4%B8%80%E5%9D%97%E7%9F%B3%E5%A4%B4%E7%9A%84%E9%87%8D%E9%87%8FII.md
 //把石头分成两堆，他们的重量差就是最后的重量，所以转换成求两堆石头重量差最小是多少。
 //类似416题，可以再转换成01背包问题: 一堆石头的重量和价值是stones[i],求接近一半重量/价值的最大重量/价值。ans=两堆石头重量差绝对值=abs(maxhalf - (sum-maxhalf))
+// 2025.03.29 第一次AC，看了题解
+// 2025.06.09 第二次AC Runtime Beats 100.00%
+
+class Solution {
+public:
+    int lastStoneWeightII(vector<int>& stones) {
+        int sum = accumulate(stones.begin(), stones.end(), 0);
+        int target = sum/2;
+
+        vector<int> dp(target+1, 0);
+        for (int x: stones)
+            for (int j = target; j>= x; j--)
+            {
+                dp[j] = max(dp[j], dp[j-x]+x);
+            }
+        return abs(sum - 2*dp[target]);
+    }
+};
+
+// 第一次题解
 class Solution {
 public:
     int lastStoneWeightII(vector<int>& stones) 

@@ -2,6 +2,35 @@
 //https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0416.%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86.md
 //回溯法可以做但是提交会超时
 //转换为背包问题，nums视为重量和价值，把容量=sum/2的背包填满；而不是把nums视为价值，重量视为1，找总value能否等于sum/2
+// 2025.03.29 第一次AC，看了题解
+// 2026.06.09 第二次AC，没看题解，看了优化方案
+
+class Solution {
+public:
+    bool canPartition(vector<int>& nums) 
+    {
+        int sum = accumulate(nums.begin(), nums.end(), 0);
+        if(sum%2) return false;
+
+        int target = sum/2;
+        // dp[i] 表示刚好能装j个空间，装满
+        vector<bool> dp(target+1, false);
+        dp[0] = true;
+
+        for(int x: nums)
+            // 倒序遍历 j，既不会读到修改后的本行数据，又不用保存上一行数据
+            for (int j = target; j>=x; j--)
+                // dp[j]一定能装满=true 的情况：
+                //   1.不装物品j就能装满（dp[j]=true）
+                //   2.装物品j能装满   (dp[j-x]=true)
+                dp[j] = dp[j] || dp[j-x];
+        
+        return dp[target];
+    }
+};
+
+/*
+// 第一次通过
 class Solution {
 public:
     bool canPartition(vector<int>& nums) 
@@ -27,3 +56,4 @@ public:
         return false;
     }
 };
+*/
