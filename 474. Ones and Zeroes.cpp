@@ -1,7 +1,33 @@
-//https://leetcode.com/problems/ones-and-zeroes/
-//这道题的特点是求有多少种装满背包的方法，解法依然是01背包，但是是二维
-//dp[i][j]定义为不超过i个0，j个1的strs的最大子集数量。
-//求解法是遍历每个字符串，更新可以容下它的所有dp[i][j]
+// https://leetcode.com/problems/ones-and-zeroes/
+// 这道题的特点是求有多少种装满背包的方法，解法依然是01背包，但是是二维
+// dp[i][j]定义为不超过i个0，j个1的strs的最大子集数量。
+// 求解法是遍历每个字符串，更新可以容下它的所有dp[i][j]
+// 2025.04.30 第一次AC，看了题解
+// 2026.06.12 第二次AC，看了题解
+
+// 第二次AC
+class Solution {
+public:
+    int findMaxForm(vector<string>& strs, int m, int n)
+    {
+        vector<vector<int>> dp(m+1, vector<int>(n+1, 0));
+        for (string  str: strs)
+        {
+            int n0 = 0, n1 = 0;
+            for(char c:str)
+                (c=='0')? (n0++) : n1++;
+            
+            //cout << n0 << " " << n1 << endl;
+
+            for(int i=m; i>=n0; i--)
+                for (int j=n; j>=n1; j--)
+                    dp[i][j] = max(dp[i][j], dp[i-n0][j-n1]+1); //别忘了需要比较加入当前物品能否获得更大子集
+        }
+        return dp[m][n];
+    }
+};
+
+// 第一次AC
 class Solution {
 public:
     int findMaxForm(vector<string>& strs, int m, int n) 
