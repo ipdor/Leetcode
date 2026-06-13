@@ -1,10 +1,42 @@
-//https://kamacoder.com/problempage.php?pid=1052
-//[背包问题分类,01完全多重分组](https://camo.githubusercontent.com/0f6365953e879c2bdc077b00aa6b7f0278a9d0cee9a9553d441857c1da03e186/68747470733a2f2f66696c65312e6b616d61636f6465722e636f6d2f692f616c676f2f32303231303131373137313330373430372e706e67)
-//2025.8.4创建，看了题解
+// https://kamacoder.com/problempage.php?pid=1052
+// [背包问题分类,01完全多重分组](https://camo.githubusercontent.com/0f6365953e879c2bdc077b00aa6b7f0278a9d0cee9a9553d441857c1da03e186/68747470733a2f2f66696c65312e6b616d61636f6465722e636f6d2f692f616c676f2f32303231303131373137313330373430372e706e67)
+// 2025.08.04 创建，看了题解
+// 2026.06.13 第二次AC，未看题解
+
 #include <iostream>
 #include <vector>
 using namespace std;
 
+// 第二次AC 二维和一维各做了一次，只保留一维代码
+// 注意取值范围 1 <= wi, vi <= 10^9 ，需要用 long long 
+// 容量取上限10000，vi取上限10^9，答案10000×10^9=10^13
+int main()
+{
+    unsigned int n, v;
+    cin >> n >> v;
+
+    vector<long long unsigned int> weight(n, 0), value(n, 0);
+    for (int i = 0; i < n; i++)
+    {
+        int a, b;
+        cin >> a >> b;
+        weight[i] = a;
+        value[i] = b;
+    }
+
+    vector<long long unsigned int> dp(v+1,  0);
+    for (int j = weight[0]; j < v+1; j++)
+        dp[j] = dp[j-weight[0]] + value[0];
+
+    for (unsigned int i = 1; i < n; i++)
+        for (long long unsigned int j = weight[i]; j < v+1; j++)
+            dp[j] = max(dp[j], dp[j-weight[i]] + value[i]);
+
+    cout <<  dp[v] << endl;
+    return 0 ;
+}
+
+// 第一次AC
 void print(vector<int> &dp)
 {
     for (int j =0; j< dp.size(); j++)
